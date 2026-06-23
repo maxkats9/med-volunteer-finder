@@ -1,0 +1,186 @@
+[
+  {
+    "id": "1",
+    "title": "Emergency Department Volunteer",
+    "institution": "Massachusetts General Hospital",
+    "institutionType": "hospital",
+    "imageUrl": "https://images.unsplash.com/photo-1519494026892-80bbd122d47a?w=800&h=500&fit=crop",
+    "location": { "city": "Boston", "state": "MA" },
+    "tags": ["Patient Support", "Weekends", "High School+"],
+    "description": "Support clinical staff in the emergency department by greeting patients, restocking supplies, and providing comfort items to families in the waiting area.",
+    "requirements": [
+      "Minimum age 16 with parental consent, or 18+",
+      "Commit to one 4-hour shift per week for 6 months",
+      "Complete hospital orientation and health screening",
+      "Strong communication skills and calm demeanor"
+    ],
+    "schedule": "Shifts available Saturday–Sunday, 8am–12pm or 12pm–4pm",
+    "contact": {
+      "email": "volunteers@mgh.harvard.edu",
+      "phone": "(617) 726-8762"
+    },
+    "applyUrl": "https://example.com/apply/mgh-ed",
+    "deadline": "2026-08-15"
+  },
+  {
+    "id": "2",
+    "title": "Community Health Clinic Greeter",
+    "institution": "Bay Area Free Clinic",
+    "institutionType": "clinic",
+    "imageUrl": "https://images.unsplash.com/photo-1631217868264-e5b1bb5e89bb?w=800&h=500&fit=crop",
+    "location": { "city": "Oakland", "state": "CA" },
+    "tags": ["Front Desk", "Bilingual Preferred", "Weekday"],
+    "description": "Welcome patients, assist with check-in paperwork, and help navigate the clinic. Spanish or Cantonese speakers especially needed.",
+    "requirements": [
+      "Age 18 or older",
+      "Available one weekday morning per week",
+      "Comfortable using basic computer systems",
+      "Pass background check"
+    ],
+    "schedule": "Monday–Friday, 9am–1pm (flexible day)",
+    "contact": {
+      "email": "volunteer@bayareafreeclinic.org",
+      "phone": "(510) 555-0142"
+    },
+    "applyUrl": "https://example.com/apply/bafc-greeter",
+    "deadline": "2026-07-01"
+  },
+  {
+    "id": "3",
+    "title": "Pediatric Ward Activity Assistant",
+    "institution": "Texas Children's Hospital",
+    "institutionType": "hospital",
+    "imageUrl": "https://images.unsplash.com/photo-1586773866498-e0e85b1e4c38?w=800&h=500&fit=crop",
+    "location": { "city": "Houston", "state": "TX" },
+    "tags": ["Pediatrics", "Creative Arts", "Evenings"],
+    "description": "Lead crafts, games, and reading activities for pediatric patients and siblings. Help create a positive environment during hospital stays.",
+    "requirements": [
+      "Age 18+",
+      "Experience working with children preferred",
+      "TB test and flu vaccination required",
+      "6-month minimum commitment"
+    ],
+    "schedule": "Tuesday and Thursday evenings, 5pm–8pm",
+    "contact": {
+      "email": "volunteer.services@texaschildrens.org",
+      "phone": "(832) 824-2257"
+    },
+    "applyUrl": "https://example.com/apply/tch-peds",
+    "deadline": "2026-09-30"
+  },
+  {
+    "id": "4",
+    "title": "Medical Research Study Coordinator Assistant",
+    "institution": "Northwestern University Research Center",
+    "institutionType": "research",
+    "imageUrl": "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&h=500&fit=crop",
+    "location": { "city": "Chicago", "state": "IL" },
+    "tags": ["Research", "Pre-Med", "Data Entry"],
+    "description": "Assist research coordinators with participant scheduling, data entry, and sample processing for cardiovascular health studies.",
+    "requirements": [
+      "Currently enrolled college student (pre-med or related field)",
+      "Detail-oriented with basic Excel skills",
+      "Available 8–10 hours per week",
+      "HIPAA training provided on-site"
+    ],
+    "schedule": "Flexible weekdays between 9am–5pm",
+    "contact": {
+      "email": "research.volunteer@northwestern.edu",
+      "phone": "(312) 503-1200"
+    },
+    "applyUrl": "https://example.com/apply/nu-research",
+    "deadline": "2026-06-30"
+  },
+  {
+    "id": "5",
+    "title": "Mobile Vaccination Clinic Support",
+    "institution": "HealthReach Nonprofit",
+    "institutionType": "nonprofit",
+    "imageUrl": "https://images.unsplash.com/photo-1584036561561-dafc619aecf0?w=800&h=500&fit=crop",
+    "location": { "city": "Phoenix", "state": "AZ" },
+    "tags": ["Community Outreach", "Spanish", "Travel"],
+    "description": "Help set up mobile vaccination sites, register community members, and provide post-vaccination monitoring at pop-up clinics across Maricopa County.",
+    "requirements": [
+      "Age 16+ (with guardian waiver if under 18)",
+      "Ability to lift 20 lbs and stand for extended periods",
+      "Valid driver's license preferred",
+      "Bilingual English/Spanish a plus"
+    ],
+    "schedule": "Rotating weekend events, typically 7am–2pm",
+    "contact": {
+      "email": "volunteer@healthreach.org",
+      "phone": "(602) 555-0198"
+    },
+    "applyUrl": "https://example.com/apply/healthreach-mobile",
+    "deadline": "2026-12-31"
+  },
+  {
+    "id": "6",
+    "title": "Senior Care Companion",
+    "institution": "Sunrise Senior Living Center",
+    "institutionType": "other",
+    "imageUrl": "https://images.unsplash.com/photo-1576765608535-39f47b99c2af?w=800&h=500&fit=crop",
+    "location": { "city": "Denver", "state": "CO" },
+    "tags": ["Geriatrics", "Companionship", "Flexible"],
+    "description": "Provide companionship to residents through conversation, walks, board games, and escorting to meals and activities.",
+    "requirements": [
+      "Age 18+",
+      "Patient, empathetic, and reliable",
+      "Background check required",
+      "No prior medical experience needed"
+    ],
+    "schedule": "Flexible 2-hour blocks, Monday–Saturday",
+    "contact": {
+      "email": "activities@sunrisedenver.org",
+      "phone": "(303) 555-0176"
+    },
+    "applyUrl": "https://example.com/apply/sunrise-companion",
+    "deadline": "2026-10-15"
+  },
+  {
+    "id": "7",
+    "title": "Surgical Waiting Room Ambassador",
+    "institution": "Emory University Hospital",
+    "institutionType": "hospital",
+    "imageUrl": "https://images.unsplash.com/photo-1538108149393-efda4b660e0d?w=800&h=500&fit=crop",
+    "location": { "city": "Atlanta", "state": "GA" },
+    "tags": ["Patient Support", "Communication", "Weekday"],
+    "description": "Serve as a liaison between surgical teams and families, providing updates and ensuring comfortable waiting room experiences during procedures.",
+    "requirements": [
+      "Age 21+",
+      "Excellent interpersonal skills under stress",
+      "4-hour weekly commitment for 3 months minimum",
+      "Complete confidentiality training"
+    ],
+    "schedule": "Weekdays 7am–11am or 11am–3pm",
+    "contact": {
+      "email": "volunteer@emoryhealthcare.org",
+      "phone": "(404) 712-2000"
+    },
+    "applyUrl": "https://example.com/apply/emory-surgical",
+    "deadline": "2026-08-01"
+  },
+  {
+    "id": "8",
+    "title": "Dental Clinic Assistant Volunteer",
+    "institution": "Smile Forward Community Dental",
+    "institutionType": "clinic",
+    "imageUrl": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=500&fit=crop",
+    "location": { "city": "Seattle", "state": "WA" },
+    "tags": ["Dental", "Sterilization", "Training Provided"],
+    "description": "Assist dental hygienists with instrument sterilization, room turnover, and patient education on oral hygiene in a community dental clinic serving uninsured patients.",
+    "requirements": [
+      "Age 18+",
+      "Interest in dentistry or healthcare",
+      "Willingness to complete infection control training",
+      "6-month commitment, 4 hours weekly"
+    ],
+    "schedule": "Wednesday afternoons 1pm–5pm or Saturday mornings 8am–12pm",
+    "contact": {
+      "email": "volunteer@smileforward.org",
+      "phone": "(206) 555-0133"
+    },
+    "applyUrl": "https://example.com/apply/smile-forward",
+    "deadline": "2026-07-20"
+  }
+]
