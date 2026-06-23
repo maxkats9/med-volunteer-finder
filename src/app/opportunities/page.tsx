@@ -9,8 +9,10 @@ export const metadata = {
   description: "Find medical and healthcare volunteer opportunities near you.",
 };
 
-export default function OpportunitiesPage() {
-  const opportunities = getAllOpportunities();
+export const revalidate = 60;
+
+export default async function OpportunitiesPage() {
+  const opportunities = await getAllOpportunities();
   const { states, cities, institutionTypes } = getFilterOptions(opportunities);
 
   return (

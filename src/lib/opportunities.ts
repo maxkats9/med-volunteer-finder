@@ -1,49 +1,64 @@
-import fs from "fs";
-import path from "path";
-import seedData from "@/data/opportunities.json";
+import { inputToRow, rowToOpportunity } from "@/lib/supabase/mappers";
+import {
+  createSupabaseAdminClient,
+  createSupabaseServerClient,
+} from "@/lib/supabase/server";
 import type { Opportunity, OpportunityInput } from "@/types/opportunity";
 
-const DATA_PATH = path.join(process.cwd(), "src/data/opportunities.json");
+export async function getAllOpportunities(): Promise<Opportunity[]> {
+  const supabase = createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("opportunities")
+    .select("*")
+    .order("created_at", { ascending: false });
 
-let cache: Opportunity[] | null = null;
-
-function loadFromDisk(): Opportunity[] {
-  try {
-    const raw = fs.readFileSync(DATA_PATH, "utf-8");
-    return JSON.parse(raw) as Opportunity[];
-  } catch {
-    return seedData as Opportunity[];
+  if (error) {
+    throw new Error(`Failed to fetch opportunities: ${error.message}`);
   }
+
+  return (data ?? []).map(rowToOpportunity);
 }
 
-function getStore(): Opportunity[] {
-  if (!cache) {
-    cache = loadFromDisk();
+export async function getOpportunityById(
+  id: string,
+): Promise<Opportunity | undefined> {
+  const supabase = createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("opportunities")
+    .select("*")
+    .eq("id", id)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(`Failed to fetch opportunity: ${error.message}`);
   }
-  return cache;
+
+  return data ? rowToOpportunity(data) : undefined;
 }
 
-function persistStore(opportunities: Opportunity[]): void {
-  cache = opportunities;
-  fs.writeFileSync(DATA_PATH, JSON.stringify(opportunities, null, 2), "utf-8");
-}
+export async function createOpportunity(
+  input: OpportunityInput,
+): Promise<Opportunity> {
+  const supabase = createSupabaseAdminClient();
 
-export function getAllOpportunities(): Opportunity[] {
-  return getStore();
-}
+  const { data: existing } = await supabase.from("opportunities").select("id");
+  const numericIds = (existing ?? [])
+    .map((row) => Number(row.id))
+    .filter((n) => !Number.isNaN(n));
+  const nextId = String(Math.max(0, ...numericIds, 0) + 1);
 
-export function getOpportunityById(id: string): Opportunity | undefined {
-  return getStore().find((o) => o.id === id);
-}
+  const row = inputToRow(input, nextId);
+  const { data, error } = await supabase
+    .from("opportunities")
+    .insert(row)
+    .select("*")
+    .single();
 
-export function createOpportunity(input: OpportunityInput): Opportunity {
-  const opportunities = getStore();
-  const id = String(
-    Math.max(0, ...opportunities.map((o) => Number(o.id) || 0)) + 1,
-  );
-  const opportunity: Opportunity = { id, ...input };
-  persistStore([...opportunities, opportunity]);
-  return opportunity;
+  if (error) {
+    throw new Error(`Failed to create opportunity: ${error.message}`);
+  }
+
+  return rowToOpportunity(data);
 }
 
 export function getFilterOptions(opportunities: Opportunity[]) {

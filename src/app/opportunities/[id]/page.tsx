@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllOpportunities, getOpportunityById } from "@/lib/opportunities";
+import { getOpportunityById } from "@/lib/opportunities";
 
 const institutionLabels = {
   hospital: "Hospital",
@@ -15,13 +15,11 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export async function generateStaticParams() {
-  return getAllOpportunities().map((o) => ({ id: o.id }));
-}
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params;
-  const opportunity = getOpportunityById(id);
+  const opportunity = await getOpportunityById(id);
   if (!opportunity) return { title: "Not Found" };
   return {
     title: `${opportunity.title} | MedVolunteer`,
@@ -39,7 +37,7 @@ function formatDate(iso: string) {
 
 export default async function OpportunityDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const opportunity = getOpportunityById(id);
+  const opportunity = await getOpportunityById(id);
 
   if (!opportunity) notFound();
 

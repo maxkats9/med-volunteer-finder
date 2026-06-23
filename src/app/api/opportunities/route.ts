@@ -58,12 +58,11 @@ export async function POST(request: Request) {
       );
     }
 
-    const opportunity = createOpportunity(input);
+    const opportunity = await createOpportunity(input);
     return NextResponse.json(opportunity, { status: 201 });
-  } catch {
-    return NextResponse.json(
-      { error: "Failed to create opportunity" },
-      { status: 500 },
-    );
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : "Failed to create opportunity";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
