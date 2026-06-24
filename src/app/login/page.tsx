@@ -1,9 +1,13 @@
-// src/app/login/page.tsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
+
+const supabase = createBrowserClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+)
 
 export default function LoginPage() {
   const router = useRouter()
@@ -12,25 +16,28 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  // Sign out any existing session when the login page loads
+  useEffect(() => {
+    supabase.auth.signOut()
+  }, [])
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
     setError(null)
-  
-    console.log('🔑 supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
-    console.log('📤 calling signInWithPassword...')
-  
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
-  
-    console.log('📥 auth result:', { data, error })
-  
-    // ... rest unchanged
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
+
+    if (error) {
+      setError(error.message)
+      setLoading(false)
+      return
+    }
+
+    // refresh first so middleware sees the new cookie, then navigate
+    router.refresh()
+    router.push('/admin')
   }
-  
 
   return (
     <form onSubmit={handleSubmit}>
