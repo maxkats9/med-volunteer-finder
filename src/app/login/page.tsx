@@ -30,22 +30,7 @@ export default function LoginPage() {
   
     // ... rest unchanged
   }
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
-
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-
-    if (error) {
-      setError(error.message)
-      setLoading(false)
-      return
-    }
-
-    router.push('/admin')
-    router.refresh() // forces middleware to re-evaluate with the new cookie
-  }
+  
 
   return (
     <form onSubmit={handleSubmit}>
