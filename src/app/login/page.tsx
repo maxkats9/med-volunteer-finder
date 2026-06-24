@@ -1,57 +1,59 @@
+// src/app/login/page.tsx
 'use client'
+
 import { useState } from 'react'
-import { createClient } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
+import { createBrowserClient } from '@supabase/ssr'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const router = useRouter()
 
-  const supabase = createClient(
+  const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   )
 
-  async function handleLogin() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
     setLoading(true)
-    setError('')
+    setError(null)
+
     const { error } = await supabase.auth.signInWithPassword({ email, password })
+
     if (error) {
       setError(error.message)
       setLoading(false)
-    } else {
-      router.push('/admin')
+      return
     }
+
+    router.push('/admin')
+    router.refresh() // forces middleware to re-evaluate with the new cookie
   }
 
   return (
-    <div style={{ maxWidth: 400, margin: '100px auto', padding: 24 }}>
-      <h1>Admin Login</h1>
+    <form onSubmit={handleSubmit}>
       <input
-        placeholder="Email"
+        type="email"
         value={email}
         onChange={e => setEmail(e.target.value)}
-        style={{ display: 'block', width: '100%', marginBottom: 8, padding: 8 }}
+        placeholder="Email"
+        required
       />
       <input
-        placeholder="Password"
         type="password"
         value={password}
         onChange={e => setPassword(e.target.value)}
-        onKeyDown={e => e.key === 'Enter' && handleLogin()}
-        style={{ display: 'block', width: '100%', marginBottom: 8, padding: 8 }}
+        placeholder="Password"
+        required
       />
       {error && <p style={{ color: 'red' }}>{error}</p>}
-      <button
-        onClick={handleLogin}
-        disabled={loading}
-        style={{ padding: '8px 16px', cursor: 'pointer' }}
-      >
-        {loading ? 'Logging in...' : 'Login'}
+      <button type="submit" disabled={loading}>
+        {loading ? 'Logging in...' : 'Log in'}
       </button>
-    </div>
+    </form>
   )
 }
