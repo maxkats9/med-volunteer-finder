@@ -1,4 +1,3 @@
-// middleware.ts  (at project root, same level as src/)
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
@@ -26,10 +25,16 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  // IMPORTANT: do not add any logic between createServerClient and getUser()
-  // getUser() refreshes the token if needed and writes updated cookies back
   const { data: { user } } = await supabase.auth.getUser()
 
+  // If visiting /login, clear the session cookie so they always have to log in
+  if (request.nextUrl.pathname === '/login') {
+    supabaseResponse.cookies.delete('sb-access-token')
+    supabaseResponse.cookies.delete('sb-refresh-token')
+    return supabaseResponse
+  }
+
+  // Protect /admin
   if (!user && request.nextUrl.pathname.startsWith('/admin')) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
@@ -40,5 +45,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/login'],
 }

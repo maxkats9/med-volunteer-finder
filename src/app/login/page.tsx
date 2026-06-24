@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createBrowserClient } from '@supabase/ssr'
 
@@ -16,11 +16,6 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  // Sign out any existing session when the login page loads
-  useEffect(() => {
-    supabase.auth.signOut()
-  }, [])
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
@@ -34,7 +29,6 @@ export default function LoginPage() {
       return
     }
 
-    // refresh first so middleware sees the new cookie, then navigate
     router.refresh()
     router.push('/admin')
   }
