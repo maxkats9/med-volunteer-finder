@@ -16,7 +16,20 @@ export default function LoginPage() {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   )
-
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+  
+    console.log('🔑 supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+    console.log('📤 calling signInWithPassword...')
+  
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+  
+    console.log('📥 auth result:', { data, error })
+  
+    // ... rest unchanged
+  }
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setLoading(true)
