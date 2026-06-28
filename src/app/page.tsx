@@ -11,7 +11,7 @@ export default function Home() {
         <p className="mt-4 text-lg leading-relaxed text-gray-600">
           MedVolunteer connects aspiring and experienced volunteers with
           opportunities at hospitals, clinics, research centers, and community
-          health organizations across the country.
+          in the greater Boston area."
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link

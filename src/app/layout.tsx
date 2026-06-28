@@ -33,7 +33,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-gray-200 bg-white py-6 text-center text-sm text-gray-500">
-          MedVolunteer — connecting volunteers with healthcare organizations
+          "Connecting volunteers with healthcare organizations
         </footer>
       </body>
     </html>
